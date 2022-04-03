@@ -1,0 +1,78 @@
+/* h1,h2タグ */
+h1 {
+  background: #c2edff;/*背景色*/
+  padding: 0.1em;/*文字まわり（上下左右）の余白*/
+  text-align: center;
+}
+
+h2 {
+  background: #c2edff;/*背景色*/
+  padding: 0.1em;/*文字まわり（上下左右）の余白*/
+  text-align: center;
+}
+
+/* ボタンCSS */
+.btn-table {
+  margin:auto;
+  font-size: 1.5em;
+}
+
+.text {
+  display: inline-block;
+  width: 10em;
+  max-width: 100%;
+  padding: 0.5em;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background: lightgrey;
+  margin: 5px 0;
+}
+
+.btn {
+  width: 5em;
+  text-align: center;
+  border-radius: 5px;
+  background-color: grey;
+  padding: 3px;
+  text-decoration: none;
+  color: white;
+}
+.btn:hover {
+  background-color: blue;
+}
+
+/* テーブルCSS */
+.content-table {
+  border-collapse: collapse;
+  margin: 25px auto;
+  font-size: 1.5em;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.content-table thead tr {
+  background: #005498;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+}
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+  background: none;
+}
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  transition: 0.8s all ease;
+}
+.content-table tbody tr:nth-of-type(even) {
+  background: #f3f3f3;
+}
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #005498;
+}
+.content-table tbody tr:hover {
+  font-weight: bold;
+  color: yellow;
+  background: red;
+}
