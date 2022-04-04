@@ -221,18 +221,14 @@ function gedSaikanamei(daiCd,saiCd){
   
   // 大分類コードが一致する大分類リストを取得
   const siyoudaiList = 
-    objSiyou.resData.siyoudaiList.filter(
-      function(siyoudaiList){
-        return daiCd === siyoudaiList.siyoudai;
-      }
+    objSiyou.resData.siyoudaiList.filter( 
+      (siyoudaiList) => daiCd === siyoudaiList.siyoudai
     )[0];
   
   // 細目コードが一致する細目コードリストを取得
   const siyousaiList = 
     siyoudaiList.siyousaiList.filter(
-      function(siyousaiList){
-        return saiCd === siyousaiList.siyousai;
-      }
+      (siyousaiList) => saiCd === siyousaiList.siyousai
     )[0];
   
   result.saikanamei = siyousaiList.saikanamei;
