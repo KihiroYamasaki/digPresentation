@@ -154,8 +154,6 @@ function setThead(){
 //================================================
 function gedJuchuDaijpmei(daiCd){
 
-  const result = {};
-
   // 大分類コードが一致する大分類リストを取得
   const siyoudaiList = 
     objSiyou.resData.siyoudaiList.filter(
@@ -164,9 +162,7 @@ function gedJuchuDaijpmei(daiCd){
       }
     )[0];
   
-  result.juchu = siyoudaiList.juchu;
-  result.daijpmei = siyoudaiList.daijpmei;
-  return result;  
+  return siyoudaiList;  
 }
 
 // =============================================================
@@ -217,8 +213,6 @@ function setTBody(){
 //================================================        
 function gedSaikanamei(daiCd,saiCd){
 
-  const result = {};
-  
   // 大分類コードが一致する大分類リストを取得
   const siyoudaiList = 
     objSiyou.resData.siyoudaiList.filter( 
@@ -231,22 +225,39 @@ function gedSaikanamei(daiCd,saiCd){
       (siyousaiList) => saiCd === siyousaiList.siyousai
     )[0];
   
-  result.saikanamei = siyousaiList.saikanamei;
-  return result;  
+  return siyousaiList;  
 }
 
+//================================================
+// CSV出力処理
+// 参考文献：https://qiita.com/megadreams14/items/b4521308d5be65f0c544
+//================================================  
 function csvOutput(){
 
-  const emelentThead = document.getElementById('theadComb');
-  const emelentTbody = document.getElementById('tbodyComb');
+  const records = [];
   
-  // 参考文献：https://qiita.com/megadreams14/items/b4521308d5be65f0c544
-  let record = [
-    ['ID','商品名','価格'],
-    [1, 'りんご（箱)', 100],
-    [2, 'みかん　(箱)', 1200]
-  ]
+  // ヘッダーデータの取得
+  const emelentThead = document.getElementById('theadComb').getElementsByTagName("th");
+  const recordThead = [];
+  for(const th of emelentThead){
 
+    recordThead.push(th.textContent);
+  }
+  records.push(recordThead);
+
+  // テーブルーデータの取得
+  const emelentTbody = document.getElementById('tbodyComb').getElementsByTagName("tr");
+  for(const tr of emelentTbody){
+
+    const recordTBody = [];
+    
+    for(const td of tr.getElementsByTagName("td")){
+    
+      recordTBody.push(td.textContent);
+    }
+    records.push(recordTBody);
+  }
+  
   let data = records.map((record)=>record.join(',')).join('\r\n');
   let bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
   let blob = new Blob([bom, data], {type: 'text/csv'});
